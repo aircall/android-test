@@ -61,7 +61,7 @@ As you can see, it's hosted on a free Heroku server, which means that the first 
 
 ## Submission
 
-At the end of the allocated time, submit a pull request on this repository and ping you point of contact at Aircall.
+At the end of the allocated time, submit a pull request on this repository and ping your point of contact at Aircall.
 
 Don't forget to include a **README** file with the following:
 - Write a brief outline of the architecture of your app

@@ -21,8 +21,9 @@ Try to finish as many steps as you can in 2h30 - it's ok if you don't complete a
 
 Don't spend too much time on designing your app, we'll only look at your code architecture.
 
-![Alt text](assets/activity_feed.png?raw=true "Activity feed (Just example, don't have to be identical")
-![Alt text](assets/call_detail.png?raw=true "Call detail")
+Activity feed                       |  Call detail
+:-------------------------:|:-------------------------:
+![](assets/activity_feed.png)  |  ![](assets/call_detail.png)
 
 
 ## API documentation

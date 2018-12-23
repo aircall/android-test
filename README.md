@@ -1,70 +1,52 @@
 # [aircall.io](https://aircall.io) - Android technical test
 
-This test is part of our hiring process at Aircall for [Android Software Engineer positions](https://aircall.io/jobs). You'll have to do it on site within 2h30.
+## Architecture
 
-**Feel free to apply! Drop us a line with your LinkedIn/GitHub/Twitter/AnySocialProfileWhereYouAreActive at jobs@aircall.io**
+I have chosen to use MVP architecture, with some concepts of clean architecture. There is 5 models representing a call:
+- one for the network
+- one for the cache
+- one for the domain, the repository handle network and cache models, and return the domain model
+- one for the feed presentation
+- one for the details presentation
+It's maybe a bit too much for a small project like that, but I wanted to separate concerns, as if it was a bigger project.
+Each feature is splitted in 3 packages : data (network + cache + repository), domain (domain models, can also contain
+use cases when necessary) and presentation (views & presenters)
 
+The most important here is to separate the logic from the view, and split this logic into several layers. Domain layer shouldn't depend on the view,
+ neither on the data. If I choose to remove the cache or to fetch my data from Firebase from example, my presenters shouldn't change.
+ Everything can be unit tested in this way.
 
-## Summary
+## Choice of libraries
 
-The goal of this test is to make you code a small Android app from scratch. You are free to use the libraries you need and the architecture you find the most appropriate.
+### Retrofit
 
-Your app must implement the following scenario:
+Used for network layer. This is the most popular and maintained library for this.
 
-1. Main screen will display a list of calls (Activity Feed)
-2. Tapping on a call will navigate to a call detail
-3. End user should be able to navigate in app without a working Internet connection (offline mode)
-4. End user should be able to archive a call from the Activity Detail page. Once archived, the call will no longer be displayed on the Activity Feed
+### Dagger
 
+I made the choice of Dagger for dependency injection because it's the one I know the most.
+Koin and Kodein would have been other candidates.
 
-Try to finish as many steps as you can in 2h30 - it's ok if you don't complete all the tasks :)
+### RxJava
 
-Don't spend too much time on designing your app, we'll only look at your code architecture.
+I like to work with the observer pattern. I have hesitated between RxJava and LiveData.
+Even if I have already worked a bit with LiveData, I'm more used to RxJava so it made sense to choose it for this test.
 
-Activity feed                       |  Call detail
-:-------------------------:|:-------------------------:
-![](assets/activity_feed.png)  |  ![](assets/call_detail.png)
+### Room
 
+Room is a library from architecture components which ease the work with SQLite. It's for me the obvious choice to work
+with a cache.
 
-## API documentation
+## What was the most difficult part of the challenge?
 
-### Routes
+The most difficult part was for me to ensure that all the logic is separated from the view in a clean way, and that each
+layer is separated (UI, presenter, repositories, data sources) so that it can be easily and completely unit tested.
 
-Here is the API address: https://aircall-job.herokuapp.com.
+## Estimate your percentage of completion
+I would say 85%. I would have focus more on UI and on dependency injection.
 
-As you can see, it's hosted on a free Heroku server, which means that the first time you will fetch the API, it will take few seconds to answer.
+For now, every dependencies are provided in one component and they are all singletons. On a bigger project and with
+more time, I would have done subcomponents in order to scope them.
 
-- **GET** - https://aircall-job.herokuapp.com/activities: get calls to display in the Activity Feed
-- **GET** - https://aircall-job.herokuapp.com/activities/:id: retrieve a specific call details
-- **POST** - https://aircall-job.herokuapp.com/activities/:id: update a call. The only field updatable is `is_archived (bool)`. You'll need to send a JSON in the request body:
-```
-{
-  is_archived: true
-}
-```
-- **GET** - https://aircall-job.herokuapp.com/reset: Reset all calls to initial state (usefull if you archived all calls).
-
-
-### Call object
-
-- **id** - unique ID of call
-- **created_at** - creation date
-- **direction** - `inbound` or `outbound` call
-- **from** - caller's number
-- **to** - callee's number
-- **via** - Aircall number used for the call
-- **duration** - duration of a call (in seconds)
-- **is_archived** - call is archived or not
-- **call_type** - can be a `missed`, `answered` or `voicemail` call.
-
-
-
-## Submission
-
-At the end of the allocated time, submit a pull request on this repository and ping your point of contact at Aircall.
-
-Don't forget to include a **README** file with the following:
-- Write a brief outline of the architecture of your app
-- Explain your choice of libraries
-- What was the most difficult part of the challenge?
-- Estimate your percentage of completion and how much time you would need to finish
+Also, I didn't had the time to handle configuration changes like rotation. Everything is still displayed if you rotate the
+screen, but if you combine rotation + archive a call, the app will crash because callList is not saved in FeedActivity.

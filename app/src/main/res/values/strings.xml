@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Aircall Test</string>
+
+    <string name="activity_feed">Activity feed</string>
+    <string name="via">via %s at %s</string>
+    <string name="answered">Answered</string>
+    <string name="missed">Missed</string>
+    <string name="voicemail">Left a voicemail</string>
+    <string name="archive">Archive this call</string>
+
+    <string name="error_feed">Error while loading calls</string>
+    <string name="error_details">Error while loading the details</string>
+    <string name="error_archive">Error while archiving the call</string>
+    <string name="empty_feed">There is no active calls in your history</string>
+
+</resources>

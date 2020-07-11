@@ -4,4 +4,9 @@
     <string name="welcome_message">Hello %1$s</string>
     <string name="user_unlogged_message">Please log in to display top Kotlin public repositories from GitHub</string>
     <string name="unknown_error">Unknown error</string>
+    <string name="repository_stars">%1$s stars</string>
+    <string name="repository_forks">%1$s forks</string>
+    <string name="repository_pull_requests">Pull Requests</string>
+    <string name="repository_watchers">Watchers</string>
+    <string name="repository_issues">%1$s issue(s) from %2$s to %3$s</string>
 </resources>

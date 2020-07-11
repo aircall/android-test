@@ -1,12 +1,30 @@
 query GetTopKotlinPublicRepositories {
-  search(query: "kotlin", type: REPOSITORY, first: 100) {
+  search(query: "kotlin", type: REPOSITORY, first: 10) {
     edges {
       node {
         ... on Repository {
           id
           name
+          watchers {
+            totalCount
+          }
+          stargazers {
+            totalCount
+          }
+          forkCount
+          pullRequests {
+            totalCount
+          }
+          issues(last: 50) {
+            nodes {
+              createdAt
+            }
+          }
         }
       }
     }
+  }
+  repository(name: "", owner: "") {
+    id
   }
 }

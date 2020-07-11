@@ -9,7 +9,7 @@ import io.aircall.android.R
 import io.aircall.android.databinding.TopKotlinPublicRepositoriesItemBinding
 import io.aircall.android.domain.model.KotlinPublicRepository
 
-internal class TopKotlinPublicRepositoriesAdapter :
+internal class TopKotlinPublicRepositoriesAdapter(private val callback: TopKotlinPublicRepositoriesCallback) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private val topKotlinPublicRepositoriesList: MutableList<KotlinPublicRepository> = ArrayList()
@@ -41,6 +41,9 @@ internal class TopKotlinPublicRepositoriesAdapter :
             val binding = dataBinding as TopKotlinPublicRepositoriesItemBinding
             val kotlinPublicRepositoryViewModel = KotlinPublicRepositoryViewModel(kotlinPublicRepository)
             binding.kotlinPublicRepositoryViewModel = kotlinPublicRepositoryViewModel
+            binding.root.setOnClickListener {
+                callback.onKotlinPublicRepositorySelected(kotlinPublicRepository)
+            }
         }
     }
 }

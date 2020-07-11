@@ -3,6 +3,7 @@ plugins {
     id("kotlin-android")
     id("kotlin-android-extensions")
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs.kotlin")
     id("org.jetbrains.kotlin.plugin.allopen") version "1.3.72"
     id("com.apollographql.apollo") version "2.2.0"
 }

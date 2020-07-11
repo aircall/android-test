@@ -32,15 +32,17 @@ class TopKotlinPublicRepositoriesViewModel @Inject constructor(
     val dataLoadingLiveData: LiveData<Boolean> = dataLoading
 
     fun launchGetUser() {
-        viewModelScope.launch {
-            getUserUseCase().collect { result ->
-                when (result) {
-                    is Result.Data -> {
-                        user.value = result.data
-                        launchGetKotlinPublicRepositories()
-                    }
-                    is Result.Error -> {
-                        error.value = result.error
+        if (userLiveData.value == null) {
+            viewModelScope.launch {
+                getUserUseCase().collect { result ->
+                    when (result) {
+                        is Result.Data -> {
+                            user.value = result.data
+                            launchGetKotlinPublicRepositories()
+                        }
+                        is Result.Error -> {
+                            error.value = result.error
+                        }
                     }
                 }
             }

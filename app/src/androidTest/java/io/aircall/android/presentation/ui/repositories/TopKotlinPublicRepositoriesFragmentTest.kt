@@ -14,6 +14,7 @@ import io.aircall.android.data.auth.AuthManager
 import io.aircall.android.di.builder.ViewModelFactory
 import io.aircall.android.di.module.TestApplicationModule
 import io.aircall.android.domain.exception.UserNotAuthenticated
+import io.aircall.android.domain.model.IssuesByWeek
 import io.aircall.android.domain.model.KotlinPublicRepository
 import io.aircall.android.domain.model.User
 import io.aircall.android.presentation.navigation.Navigator
@@ -34,7 +35,8 @@ class TopKotlinPublicRepositoriesFragmentTest {
     private val topKotlinPublicRepositoriesFragment = TopKotlinPublicRepositoriesFragment()
     private val userLiveData = MediatorLiveData<User>()
     private val errorLiveData = MediatorLiveData<Throwable>()
-    private val topKotlinPublicRepositoriesLiveData = MediatorLiveData<List<KotlinPublicRepository>>()
+    private val topKotlinPublicRepositoriesLiveData =
+        MediatorLiveData<List<KotlinPublicRepository>>()
     private val dataLoadingLiveData = MediatorLiveData<Boolean>()
 
     @MockK
@@ -73,7 +75,14 @@ class TopKotlinPublicRepositoriesFragmentTest {
 
         // Then
         onView(withId(R.id.welcomeMessage))
-            .check(matches(withText(activityTestRule.activity.getString(R.string.welcome_message).format(fakeUser.name))))
+            .check(
+                matches(
+                    withText(
+                        activityTestRule.activity.getString(R.string.welcome_message)
+                            .format(fakeUser.name)
+                    )
+                )
+            )
     }
 
     @Test
@@ -113,7 +122,7 @@ class TopKotlinPublicRepositoriesFragmentTest {
 
         // Then
         // TODO check why verification fails
-        //verify { navigator.navigateToLoginFragment(topKotlinPublicRepositoriesFragment) }
+//        verify { navigator.navigateToLoginFragment(topKotlinPublicRepositoriesFragment) }
         confirmVerified(navigator)
     }
 
@@ -147,7 +156,16 @@ class TopKotlinPublicRepositoriesFragmentTest {
 
     companion object FakeData {
         val fakeUser = User("Luke")
-        val fakeTopKotlinPublicRepositories = listOf(KotlinPublicRepository("fake"))
+        val fakeTopKotlinPublicRepositories = listOf(
+            KotlinPublicRepository(
+                "fake",
+                "fake",
+                "fake",
+                "fake",
+                "fake",
+                listOf(IssuesByWeek("fake", "fake", "fake"))
+            )
+        )
         val fakeError = Throwable("fake")
     }
 }

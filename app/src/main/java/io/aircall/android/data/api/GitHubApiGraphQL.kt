@@ -4,8 +4,6 @@ import com.apollographql.apollo.ApolloClient
 import com.apollographql.apollo.coroutines.toDeferred
 import io.aircall.android.GetTopKotlinPublicRepositoriesQuery
 import io.aircall.android.GetUserQuery
-import io.aircall.android.data.model.KotlinPublicRepositoryData
-import io.aircall.android.data.model.UserData
 
 class GitHubApiGraphQL(
     private val apolloClient: ApolloClient
@@ -17,7 +15,7 @@ class GitHubApiGraphQL(
             .toDeferred()
             .await()
             .data
-            ?.let { UserData(it.viewer.login) }
+            ?.toDataResponse()
 
     override suspend fun getTopKotlinPublicRepositories() =
         apolloClient
@@ -25,9 +23,7 @@ class GitHubApiGraphQL(
             .toDeferred()
             .await()
             .data?.search?.edges?.mapNotNull { edge ->
-                edge?.node?.asRepository?.let { repository ->
-                    KotlinPublicRepositoryData(repository.name)
-                }
+                edge?.node?.asRepository?.toDataResponse()
             }
             ?: emptyList()
 }

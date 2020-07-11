@@ -4,6 +4,7 @@ import io.aircall.android.data.api.GitHubApi
 import io.aircall.android.data.auth.AuthStateRepository
 import io.aircall.android.domain.exception.UserNotAuthenticated
 import io.aircall.android.domain.model.User
+import io.aircall.android.domain.toDomainObject
 import io.aircall.android.domain.usecase.Result
 import io.aircall.android.domain.usecase.UseCase
 import kotlinx.coroutines.flow.flow
@@ -17,9 +18,7 @@ class GetUserUseCase @Inject constructor(private val gitHubApi: GitHubApi,
             val user = authStateRepository.read()
                 .takeIf { it.isAuthorized }
                 ?.run {
-                    gitHubApi.getUser()?.let {
-                        User(it.name)
-                    }
+                    gitHubApi.getUser()?.toDomainObject()
                 } ?: throw UserNotAuthenticated
             emit(Result.Data(user))
         } catch (throwable: Throwable) {

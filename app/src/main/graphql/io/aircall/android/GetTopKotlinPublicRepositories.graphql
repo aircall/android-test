@@ -1,0 +1,12 @@
+query GetTopKotlinPublicRepositories {
+  search(query: "kotlin", type: REPOSITORY, first: 100) {
+    edges {
+      node {
+        ... on Repository {
+          id
+          name
+        }
+      }
+    }
+  }
+}

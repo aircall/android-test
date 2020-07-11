@@ -2,6 +2,6 @@
     <string name="app_name">Aircall Android Test</string>
     <string name="login">Login</string>
     <string name="welcome_message">Hello %1$s</string>
-    <string name="user_unlogged_message">Please log in</string>
+    <string name="user_unlogged_message">Please log in to display top Kotlin public repositories from GitHub</string>
     <string name="unknown_error">Unknown error</string>
 </resources>

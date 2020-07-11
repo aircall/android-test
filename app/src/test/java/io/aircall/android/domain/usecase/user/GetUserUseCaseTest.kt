@@ -36,6 +36,7 @@ class GetUserUseCaseTest {
                 assertComplete()
             }
             coVerify { mockGitHubApi.getUser() }
+            confirmVerified(mockGitHubApi)
         }
     }
 
@@ -60,6 +61,7 @@ class GetUserUseCaseTest {
                 assertComplete()
             }
             coVerify(exactly = 0) { mockGitHubApi.getUser() }
+            confirmVerified(mockGitHubApi)
         }
     }
 
@@ -84,6 +86,7 @@ class GetUserUseCaseTest {
                 assertComplete()
             }
             coVerify { mockGitHubApi.getUser() }
+            confirmVerified(mockGitHubApi)
         }
     }
 

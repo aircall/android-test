@@ -4,7 +4,7 @@ import io.aircall.android.di.injector.MainInjector
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import dagger.android.support.AndroidSupportInjectionModule
-import io.aircall.android.presentation.main.MainActivity
+import io.aircall.android.presentation.ui.MainActivity
 
 @Module(includes = [AndroidSupportInjectionModule::class])
 interface ActivityModule {

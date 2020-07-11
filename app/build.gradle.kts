@@ -61,6 +61,7 @@ dependencies {
     implementation("com.google.dagger:dagger:2.24")
     implementation("com.google.dagger:dagger-android:2.24")
     implementation("com.google.dagger:dagger-android-support:2.24")
+    implementation("com.facebook.shimmer:shimmer:0.5.0@aar")
     testImplementation("junit:junit:4.13")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.7")
     testImplementation("com.github.ologe:flow-test-observer:1.4.1")

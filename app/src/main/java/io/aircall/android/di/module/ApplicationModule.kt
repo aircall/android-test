@@ -6,8 +6,8 @@ import dagger.Module
 import dagger.Provides
 import io.aircall.android.data.auth.AuthManager
 import io.aircall.android.di.builder.ViewModelFactoryBuilder
-import io.aircall.android.presentation.navigation.IntentLauncher
-import io.aircall.android.presentation.navigation.IntentLauncherImpl
+import io.aircall.android.presentation.navigation.Navigator
+import io.aircall.android.presentation.navigation.NavigatorImpl
 import javax.inject.Singleton
 
 
@@ -20,5 +20,5 @@ class ApplicationModule {
 
     @Singleton
     @Provides
-    fun provideIntentLauncher(authManager: AuthManager): IntentLauncher = IntentLauncherImpl(authManager)
+    fun provideNavigator(authManager: AuthManager): Navigator = NavigatorImpl(authManager)
 }

@@ -1,4 +1,4 @@
-package io.aircall.android.presentation.main
+package io.aircall.android.presentation.ui
 
 import android.os.Bundle
 import dagger.android.support.DaggerAppCompatActivity

@@ -1,6 +1,7 @@
 package io.aircall.android.data.auth
 
 import android.content.Intent
+import io.aircall.android.domain.exception.UserNotAuthenticated
 import net.openid.appauth.*
 
 
@@ -25,14 +26,20 @@ class OpenIdAuthManager(
         return authService.getAuthorizationRequestIntent(request)
     }
 
-    override fun processAuthResult(data: Intent, authResultProcessedCallback: () -> Unit) {
+    override fun processAuthResult(data: Intent,
+                                   successCallback: () -> Unit,
+                                   errorCallback: (error: Throwable) -> Unit) {
         AuthorizationResponse.fromIntent(data)?.let { authorizationResponse ->
             authService.performTokenRequest(
                 authorizationResponse.createTokenExchangeRequest(),
                 clientAuth
             ) { tokenResponse, exception ->
                 authStateRepository.update(tokenResponse, exception)
-                authResultProcessedCallback()
+                when {
+                    exception != null -> errorCallback(exception)
+                    authStateRepository.read().isAuthorized -> successCallback()
+                    else -> errorCallback(UserNotAuthenticated)
+                }
             }
         }
     }

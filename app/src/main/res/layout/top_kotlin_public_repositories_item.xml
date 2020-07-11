@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="kotlinPublicRepositoryViewModel"
+            type="io.aircall.android.presentation.ui.repositories.KotlinPublicRepositoryViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_margin="@dimen/default_margin">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="@dimen/default_margin">
+
+            <include
+                android:id="@+id/kotlinPublicRepositoryNameLoading"
+                layout="@layout/view_loading"
+                android:layout_width="150dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toBottomOf="@+id/kotlinPublicRepositoryName"
+                app:layout_constraintStart_toStartOf="@+id/kotlinPublicRepositoryName"
+                app:layout_constraintTop_toTopOf="@+id/kotlinPublicRepositoryName"
+                android:visibility="@{kotlinPublicRepositoryViewModel.kotlinPublicRepositoryLiveData.name == null}" />
+
+            <TextView
+                android:id="@+id/kotlinPublicRepositoryName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="@{kotlinPublicRepositoryViewModel.kotlinPublicRepositoryLiveData.name}"
+                tools:text="Kotlin Public Repository" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+
+</layout>

@@ -4,12 +4,12 @@ import androidx.lifecycle.ViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
-import io.aircall.android.presentation.main.MainViewModel
+import io.aircall.android.presentation.ui.repositories.TopKotlinPublicRepositoriesViewModel
 
 @Module
 abstract class ViewModelsBuilder {
     @Binds
     @IntoMap
-    @ViewModelKey(MainViewModel::class)
-    abstract fun bindMainViewModel(mainViewModel: MainViewModel): ViewModel
+    @ViewModelKey(TopKotlinPublicRepositoriesViewModel::class)
+    abstract fun bindMainViewModel(topKotlinPublicRepositoriesViewModel: TopKotlinPublicRepositoriesViewModel): ViewModel
 }

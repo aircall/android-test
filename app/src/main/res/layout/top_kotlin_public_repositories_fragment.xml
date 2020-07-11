@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="topKotlinPublicRepositoriesViewModel"
+            type="io.aircall.android.presentation.ui.repositories.TopKotlinPublicRepositoriesViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".presentation.ui.repositories.TopKotlinPublicRepositoriesFragment">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/headerGuideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="50dp" />
+
+            <TextView
+                android:id="@+id/welcomeMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@{String.format(@string/welcome_message, topKotlinPublicRepositoriesViewModel.userLiveData.name)}"
+                app:layout_constraintBottom_toTopOf="@+id/headerGuideline"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/welcome_message" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/topKotlinPublicRepositoriesRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintTop_toBottomOf="@+id/headerGuideline" />
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/loadingLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="@{topKotlinPublicRepositoriesViewModel.dataLoadingLiveData.booleanValue()}"
+                app:layout_constraintEnd_toEndOf="@+id/topKotlinPublicRepositoriesRecyclerView"
+                app:layout_constraintStart_toStartOf="@+id/topKotlinPublicRepositoriesRecyclerView"
+                app:layout_constraintTop_toTopOf="@+id/topKotlinPublicRepositoriesRecyclerView"
+                tools:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                    <include layout="@layout/top_kotlin_public_repositories_item" />
+
+                </LinearLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

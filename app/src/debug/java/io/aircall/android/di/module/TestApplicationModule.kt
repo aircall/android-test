@@ -7,12 +7,12 @@ import dagger.Provides
 import io.aircall.android.TestApplication
 import io.aircall.android.data.auth.AuthManager
 import io.aircall.android.di.builder.ViewModelFactory
-import io.aircall.android.presentation.navigation.IntentLauncher
+import io.aircall.android.presentation.navigation.Navigator
 import javax.inject.Singleton
 
 @Module
 class TestApplicationModule(private val viewModelFactory: ViewModelFactory,
-                            private val intentLauncher: IntentLauncher,
+                            private val navigator: Navigator,
                             private val authManager: AuthManager) {
 
     @Singleton
@@ -25,7 +25,7 @@ class TestApplicationModule(private val viewModelFactory: ViewModelFactory,
 
     @Singleton
     @Provides
-    fun provideIntentLauncher(): IntentLauncher = intentLauncher
+    fun provideNavigator(): Navigator = navigator
 
     @Singleton
     @Provides

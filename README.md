@@ -13,17 +13,17 @@ This application will use the Github API (https://developer.github.com/).
 
 Your app must implement the following scenario:
 
-1. Allow the user the login via Github
+1. Allow the user the login via Github (It should also works with two factor authentication account)
 2. Display list of top Kotlin public repositories
 3. Allow the user to select a repository
-4. Display in the application the key statistics as well as a history of the number issue over the past year in 1 week intervals for the selected repository. eg: number of stars, PR, forked, watchers and etc.
+4. Display in the application the key statistics as well as a history of the amount of issues over the past year in 1 week intervals for the selected repository. eg: number of stars, PR, forked, watchers and etc.
 5. Explain how you'd improve on this application design &UI/UX
 6. Explain how you'd improve on this application architecture
 7. Test what you think is necessary
 
 ## Submission
 
-At the end, submit a pull request on this repository or send a link of your own repository and ping your point of contact at Aircall.
+At the end, send a link of your own repository and ping your point of contact at Aircall.
 
 Don't forget to include a **README** file with the following:
 - Write a brief outline of the architecture of your app
